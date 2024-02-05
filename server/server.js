@@ -1,1 +1,43 @@
-console.log("hello world!")
+import "dotenv/config";
+import express from "express"
+import cookieParser from "cookie-parser";
+import customError from "./middleware/customError.js";
+import helmet from "helmet";
+import cors from "cors";
+import { limiter } from "./middleware/rateLimit.js";
+
+// created express app
+const app = express();
+const PORT = process.env.PORT || 8000;
+
+
+// adding middleware
+// parsing json
+app.use(express.json());
+// adding extra security http
+app.use(helmet());
+// cross origin access
+app.use(cors());
+// parsing cookies
+app.use(cookieParser());
+// rate limit
+app.use(limiter);
+
+// listing Port
+app.listen(PORT, () => {
+    console.log(`Server is running on port: ${PORT}`);
+});
+
+// test
+app.get("/test", (req, res) => {
+    return res.json({ message: "Hello It's working" });
+});
+
+
+// Invalid error
+app.get('*', (req, res) => {
+    res.json({ message: "this url is invalid" });
+})
+
+// middle ware for error handling 
+app.use(customError);
