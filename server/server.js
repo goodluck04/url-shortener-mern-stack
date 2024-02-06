@@ -9,6 +9,7 @@ import connectDatabase from "./config/connectDB.js";
 
 // api routes
 import authRouter from "./routes/auth.routes.js"
+import urlRouter from "./routes/url.routes.js"
 // created express app
 const app = express();
 // port to listen
@@ -40,7 +41,7 @@ app.get("/test", (req, res) => {
 });
 
 // add api routes with prefix /v1/api for all api endpoints
-app.use("/v1/api/", authRouter);
+app.use("/v1/api/", authRouter, urlRouter);
 
 // middle ware for error handling 
 app.use(customError);

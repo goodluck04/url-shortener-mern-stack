@@ -51,13 +51,14 @@ class AuthController {
             const token = jwt.sign({ id: validUser.id }, process.env.JWT_SECRET, {
                 expiresIn: "365d",
             });
-            // user without password
-            const userWithoutPassword = await User.findOne({ email: payload.email }).select("-password");
-            // send the token
+
+            // destructure validUser then send data without password
+            const { password: pass, ...rest } = validUser._doc; //it will avoid password in res
+            // send response
             res
                 .cookie("access_token", token, { httpOnly: true })
                 .status(200)
-                .json(userWithoutPassword);
+                .json(rest);
         } catch (error) {
             if (error instanceof errors.E_VALIDATION_ERROR) {
                 return res.status(400).json({ errors: error.messages })
@@ -66,6 +67,19 @@ class AuthController {
             }
         }
     }
+
+    // sign out
+    static async signOut(req, res, next) {
+        try {
+
+            res
+                .clearCookie("access_token")
+                .status(200)
+                .json({ message: "User has been logged out!" });
+        } catch (error) {
+            next(error);
+        }
+    };
 }
 
 

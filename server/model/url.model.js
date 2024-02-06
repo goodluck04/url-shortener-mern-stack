@@ -7,6 +7,10 @@ const urlSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
+        urlName:{
+          type:String,
+          default: "Undefined"
+        },
         redirectURL: {
             type: String,
             required: true,
@@ -33,6 +37,6 @@ urlSchema.set('toJSON', {
 });
 
 
-const Url = mongoose.model("Url", urlSchema);
+const UrlModel = mongoose.model("UrlModel", urlSchema);
 
-export default Url;
+export default UrlModel;
