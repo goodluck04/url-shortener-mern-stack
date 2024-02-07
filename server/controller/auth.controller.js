@@ -1,5 +1,5 @@
 import bcryptjs from "bcryptjs";
-import { loginSchema, registerSchema } from "../validation/auth.validation.js";
+import { loginSchema, registerSchema } from "../validation/signup.validation.js";
 import vine, { errors } from "@vinejs/vine";
 import User from "../model/user.model.js"
 import { ErrorHandler } from "../utils/extendError.js";
@@ -58,7 +58,7 @@ class AuthController {
             res
                 .cookie("access_token", token, { httpOnly: true })
                 .status(200)
-                .json(rest);
+                .json({ rest, message: "logged in Successfully!" });
         } catch (error) {
             if (error instanceof errors.E_VALIDATION_ERROR) {
                 return res.status(400).json({ errors: error.messages })
@@ -78,6 +78,16 @@ class AuthController {
                 .json({ message: "User has been logged out!" });
         } catch (error) {
             next(error);
+        }
+    };
+    // sign out
+    static async userInfo(req, res, next) {
+        try {
+            const userId = req.user?.id;
+            const getUser = await User.findById(userId).select("-password");
+            res.status(200).json(getUser);
+        } catch (error) {
+            return next(error)
         }
     };
 }
