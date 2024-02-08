@@ -8,7 +8,6 @@ export const authApi = apiSlice.injectEndpoints({
                 url: "signup",
                 method: "POST",
                 body: data,
-                // credentials: "include"
             })
         }),
         login: builder.mutation({
