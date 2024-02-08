@@ -16,10 +16,7 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 
 // adding middleware
-app.use(cors({
-    origin: "https://urlener.vercel.app/",
-    credentials:true
-}));
+app.use(cors());
 
 // parsing json
 app.use(express.json());
