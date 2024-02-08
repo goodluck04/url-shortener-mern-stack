@@ -11,7 +11,6 @@ export default function Page({ params }) {
   const router = useRouter();
 
   const { data } = useGetUrlHistoryQuery(id, {});
-  console.log(data);
   return (
     <div>
       <Header />

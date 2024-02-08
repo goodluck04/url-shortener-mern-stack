@@ -1,5 +1,5 @@
 import bcryptjs from "bcryptjs";
-import { editUrlSchema, userUrlSchema, getUrlSchema } from "../validation/url.validation.js";
+import { editUrlSchema, getUrlSchema } from "../validation/url.validation.js";
 import UrlModel from "../model/url.model.js"
 import vine, { errors } from "@vinejs/vine";
 import { ErrorHandler } from "../utils/extendError.js";

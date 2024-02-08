@@ -44,9 +44,6 @@ export default function AddLink({ params }) {
         description: data.message,
         className: "bg-green-400",
       });
-      console.log(data.id);
-      setShortUrlState(process.env.NEXT_PUBLIC_SERVER_URI + data.id);
-      setClear(true);
     }
     if (error) {
       if ("data" in error) {

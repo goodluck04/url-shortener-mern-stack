@@ -10,7 +10,6 @@ import Signout from "./SignOutBtn";
 function Header() {
   const pathName = usePathname();
   const { data: currentUser, isLoading } = useLoadUserQuery({});
-  // console.log(currentUser);
 
   const user = useSelector((state) => state.auth.user);
 
