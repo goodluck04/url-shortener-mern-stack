@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams, useSearchParams } from "next/navigation";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { toast } from "@/components/ui/use-toast";
@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 
 export default function Page() {
   const dispatch = useDispatch();
+  const params = useSearchParams();
   const router = useRouter();
   const [authState, setAuthState] = useState({
     email: "",
@@ -49,7 +50,7 @@ export default function Page() {
         console.log("an Error occured", error);
       }
     }
-  }, [isSuccess, error, data,router]);
+  }, [isSuccess, error, data, router]);
 
   const submitHandler = async () => {
     await login(authState);
