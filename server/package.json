@@ -8,6 +8,13 @@
     "start": "node server",
     "dev": "nodemon server"
   },
+  "engines": {
+    "node": ">=18.18.0 <20.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git remote add origin https://github.com/goodluck04/url-shortener-mern-stack.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
