@@ -9,7 +9,8 @@ const nextConfig = {
     },
     experimental: {
         missingSuspenseWithCSRBailout: false,
-    }
+    },
+    distDir: "build",
 };
 
 export default nextConfig;
