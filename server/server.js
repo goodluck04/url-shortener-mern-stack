@@ -22,7 +22,9 @@ app.use(express.json());
 // adding extra security http
 app.use(helmet());
 // cross origin access
-app.use(cors());
+app.use(cors({
+    origin: "https://urlener.vercel.app/"
+}));
 // parsing cookies
 app.use(cookieParser());
 // rate limit
