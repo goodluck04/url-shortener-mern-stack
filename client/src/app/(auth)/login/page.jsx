@@ -10,6 +10,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { toast } from "@/components/ui/use-toast";
 import { useDispatch } from "react-redux";
+import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
 
 export default function Page() {
   const dispatch = useDispatch();

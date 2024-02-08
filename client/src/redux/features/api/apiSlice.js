@@ -33,4 +33,4 @@ export const apiSlice = createApi({
     })
 });
 
-export const { useLazyLoadUserQuery } = apiSlice;
+export const { useLoadUserQuery } = apiSlice;

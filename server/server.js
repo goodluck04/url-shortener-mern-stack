@@ -29,7 +29,7 @@ app.use(cors({
 // parsing cookies
 app.use(cookieParser());
 // rate limit
-app.use(limiter);
+// app.use(limiter);
 
 // listing Port
 app.listen(PORT, () => {

@@ -81,11 +81,11 @@ class UrlController {
     static async getUrlInfo(req, res, next) {
         try {
             const shortId = req.params.id;
-            const validator = vine.compile(userUrlSchema)
-            const payload = await validator.validate(req.body);
+            // const validator = vine.compile(userUrlSchema)
+            // const payload = await validator.validate(req.body);
 
             // checking auth
-            if (req.user.id === payload.userId) {
+            if (req.user.id) {
                 const getUserUrl = await UrlModel.findOne({
                     shortId: shortId
                 });
@@ -109,10 +109,8 @@ class UrlController {
         try {
             const shortId = req.params.id;
             // validating request body with vinejs
-            const validator = vine.compile(userUrlSchema)
-            const payload = await validator.validate(req.body);
             // checking auth
-            if (req.user.id === payload.userId) {
+            if (req.user.id) {
                 const getUserUrl = await UrlModel.findOneAndDelete({
                     shortId: shortId
                 });
