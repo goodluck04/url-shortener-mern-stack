@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(helmet());
 // cross origin access
 app.use(cors({
-    origin: "https://urlener-r8ezbfhmc-kumarhukum01-gmailcom.vercel.app/", // Update with your frontend's URL
+    origin: process.env.CLIENT_URL, // Update with your frontend's URL
     credentials: true
   }));
 // parsing cookies
