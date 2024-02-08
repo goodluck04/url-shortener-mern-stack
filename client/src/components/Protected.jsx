@@ -11,7 +11,7 @@ export default function Protected({ children }) {
     useEffect(() => {
         if (!isAuthenticated) {
             // Redirect the user if they are not authenticated
-            router.push('/');
+            router.push('/login');
         }
     }, [isAuthenticated, router]);
 
