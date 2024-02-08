@@ -17,6 +17,17 @@ const PORT = process.env.PORT || 8000;
 
 // adding middleware
 app.use(cors());
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+        "Access-Control-Allow-Methods",
+    );
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+    next();
+})
 
 // parsing json
 app.use(express.json());
