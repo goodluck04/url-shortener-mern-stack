@@ -8,7 +8,7 @@ export const authApi = apiSlice.injectEndpoints({
                 url: "signup",
                 method: "POST",
                 body: data,
-                credentials: "include"
+                // credentials: "include"
             })
         }),
         login: builder.mutation({
@@ -16,7 +16,6 @@ export const authApi = apiSlice.injectEndpoints({
                 url: "signin",
                 method: "POST",
                 body: data,
-                credentials: "include"
             }),
            
         }),
@@ -24,7 +23,6 @@ export const authApi = apiSlice.injectEndpoints({
             query: () => ({
                 url: "signout",
                 method: "GET",
-                credentials: "include",
             }),
             // it will return data
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {

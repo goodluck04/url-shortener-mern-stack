@@ -12,7 +12,6 @@ export const apiSlice = createApi({
             query: (data) => ({
                 url: "me",
                 method: "GET",
-                credentials: "include",
             }),
             // give user info
             // cache or store the user in store
