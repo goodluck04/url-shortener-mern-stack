@@ -15,17 +15,18 @@ const app = express();
 // port to listen
 const PORT = process.env.PORT || 8000;
 
-
 // adding middleware
+app.use(cors({
+    origin: "https://urlener.vercel.app/",
+    credentials:true
+}));
+
 // parsing json
 app.use(express.json());
 // adding extra security http
 app.use(helmet());
 // cross origin access
-app.use(cors({
-    origin: "https://urlener.vercel.app/",
-    credentials:true
-}));
+
 // parsing cookies
 app.use(cookieParser());
 // rate limit
