@@ -23,6 +23,7 @@ app.use(express.json());
 app.use(helmet());
 // cross origin access
 app.use(cors());
+app.options('*', cors());
 // parsing cookies
 app.use(cookieParser());
 // rate limit
