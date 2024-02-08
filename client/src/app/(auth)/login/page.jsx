@@ -51,7 +51,7 @@ export default function Page() {
         console.log("an Error occured", error);
       }
     }
-  }, [isSuccess, error, data]);
+  }, [isSuccess, error, data,router]);
 
   const submitHandler = async () => {
     await login(authState);
@@ -121,7 +121,7 @@ export default function Page() {
               </Button>
             </div>
             <div className="mt-4 text-center">
-              <strong>Don't Have an account ?</strong>
+              <strong>Don&apos;t Have an account ?</strong>
               <Link href="/register" className="pl-2 text-orange-400">
                 Register
               </Link>

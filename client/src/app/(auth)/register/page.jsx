@@ -35,8 +35,7 @@ export default function Register() {
         const errorData = error;
         if (errorData.data.errors) {
           setErrors(errorData.data.errors);
-        }
-        else if (errorData.data?.message) {
+        } else if (errorData.data?.message) {
           toast({
             title: "Error",
             description: errorData.data.message,
@@ -47,7 +46,7 @@ export default function Register() {
         console.log("an Error occured", error);
       }
     }
-  }, [isSuccess, error, data]);
+  }, [isSuccess, error, data, router]);
 
   const register = async () => {
     await signup(authState);
