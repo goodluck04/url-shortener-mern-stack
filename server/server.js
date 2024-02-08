@@ -21,13 +21,13 @@ app.use(cors());
 // parsing json
 app.use(express.json());
 // adding extra security http
-app.use(helmet());
+// app.use(helmet());
 // cross origin access
 
 // parsing cookies
 app.use(cookieParser());
 // rate limit
-app.use(limiter);
+// app.use(limiter);
 
 // listing Port
 app.listen(PORT, () => {
