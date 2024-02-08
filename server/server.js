@@ -22,8 +22,10 @@ app.use(express.json());
 // adding extra security http
 app.use(helmet());
 // cross origin access
-app.use(cors());
-app.options('*', cors());
+app.use(cors({
+    origin: true, // Update with your frontend's URL
+    credentials: true
+  }));
 // parsing cookies
 app.use(cookieParser());
 // rate limit
