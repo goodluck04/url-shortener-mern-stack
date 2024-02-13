@@ -8,7 +8,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { Clipboard, ClipboardCheck } from "lucide-react";
 import { useGenerateUrlMutation } from "@/redux/features/url/urlApi";
 
-export default function AddLink({ user_id }) {
+export default function AddLink() {
   const { toast } = useToast();
 
   const [clear, setClear] = useState(false);
@@ -54,12 +54,11 @@ export default function AddLink({ user_id }) {
   const submitHandler = async () => {
     await generateUrl(linkState);
   };
-
+  
   const clearFields = () => {
     setLinkState({ url: "", urlName: "" });
     setShortUrlState("");
     setClear(false);
-
   };
 
   return (
@@ -92,7 +91,7 @@ export default function AddLink({ user_id }) {
           />
           <span className="text-red-400 font-bold">{errors?.urlName}</span>
         </div>
-        {isSuccess && (
+        {shortUrlState && (
           <div className="mt-4">
             <Label htmlFor="description">Copy Your Short Url</Label>
             <div className="flex gap-6">
@@ -101,7 +100,6 @@ export default function AddLink({ user_id }) {
                 readOnly
                 type="text"
                 id="title"
-                placeholder="Enter your UI/UX title"
                 value={shortUrlState}
               />
               {!copied && (
