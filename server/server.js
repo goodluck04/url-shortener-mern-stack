@@ -20,15 +20,15 @@ const PORT = process.env.PORT || 8000;
 // parsing json
 app.use(express.json());
 // adding extra security http
-app.use(helmet());
+app.use(helmet()); 
 // cross origin access
 app.use(cors({
-    origin: 'https://urlener.vercel.app',
     credentials: true,
+    origin: process.env.CLIENT_URL, 
 }));
-// parsing cookies
+// parsing cookies 
 app.use(cookieParser()); 
-// rate limit
+// rate limit 
 app.use(limiter);
 
 // listing Port

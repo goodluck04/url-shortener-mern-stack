@@ -50,13 +50,14 @@ class AuthController {
             // authenticating
             const token = jwt.sign({ id: validUser.id }, process.env.JWT_SECRET, {
                 expiresIn: "365d",
-            });
+                
+            },);
 
             // destructure validUser then send data without password
             const { password: pass, ...rest } = validUser._doc; //it will avoid password in res
             // send response
             res
-                .cookie("access_token", token, { httpOnly: true })
+                .cookie("access_token", token, { httpOnly: true, secure:true, sameSite: "none" })
                 .status(200)
                 .json({ rest, message: "logged in Successfully!" });
         } catch (error) {
