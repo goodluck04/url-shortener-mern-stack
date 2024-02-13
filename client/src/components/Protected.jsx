@@ -1,14 +1,14 @@
 "use client"
-import {redirect,  useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import useAuth from "../hooks/useAuth";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 
 
 export default function Protected({ children }) {
     const isAuthenticated = useAuth(); // Check if the user is authenticated
     const router = useRouter();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (!isAuthenticated) {
             // Redirect the user if they are not authenticated
             router.push('/login');

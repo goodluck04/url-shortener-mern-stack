@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useEffect, useState } from "react";
 
@@ -12,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
+import Protected from "@/components/Protected";
 
 export default function AddLink({ params }) {
   const linkId = params?.id;
@@ -71,50 +71,56 @@ export default function AddLink({ params }) {
     const urlName = linkState.urlName;
 
     await editUrl({ id, userId, url, urlName });
-    router.push("/dashboard")
+    router.push("/dashboard");
   };
 
   return (
     <>
-    <Header />
-    <div className="flex flex-col mt-10  w-[80%]">
-      <div className="w-full flex flex-col ml-20">
-        <h1 className="">Get Your Url Short </h1>
-        <div className="mt-4">
-          <Label htmlFor="title">Your Long Url</Label>
-          <Input
-            type="text"
-            id="url"
-            placeholder="http://example.com"
-            value={linkState.url}
-            onChange={(e) =>
-              setLinkState({ ...linkState, url: e.target.value })
-            }
-          />
-          <span className="text-red-400 font-bold">{errors?.url}</span>
-        </div>
-        <div className="mt-4">
-          <Label htmlFor="title">Enter Url Name (Optional)</Label>
-          <Input
-            type="text"
-            id="urlName"
-            placeholder="Ex - google meet"
-            value={linkState.urlName}
-            onChange={(e) =>
-              setLinkState({ ...linkState, urlName: e.target.value })
-            }
-          />
-          <span className="text-red-400 font-bold">{errors?.urlName}</span>
-        </div>
-        {
-          <div className="mt-4 flex flex-col">
-            <Button onClick={submitHandler} disabled={isLoading}>
-              {isLoading ? "Updating Link" : "Updated Link"}
-            </Button>
+      <Protected>
+        <>
+          <Header />
+          <div className="flex flex-col mt-10  w-[80%]">
+            <div className="w-full flex flex-col ml-20">
+              <h1 className="">Get Your Url Short </h1>
+              <div className="mt-4">
+                <Label htmlFor="title">Your Long Url</Label>
+                <Input
+                  type="text"
+                  id="url"
+                  placeholder="http://example.com"
+                  value={linkState.url}
+                  onChange={(e) =>
+                    setLinkState({ ...linkState, url: e.target.value })
+                  }
+                />
+                <span className="text-red-400 font-bold">{errors?.url}</span>
+              </div>
+              <div className="mt-4">
+                <Label htmlFor="title">Enter Url Name (Optional)</Label>
+                <Input
+                  type="text"
+                  id="urlName"
+                  placeholder="Ex - google meet"
+                  value={linkState.urlName}
+                  onChange={(e) =>
+                    setLinkState({ ...linkState, urlName: e.target.value })
+                  }
+                />
+                <span className="text-red-400 font-bold">
+                  {errors?.urlName}
+                </span>
+              </div>
+              {
+                <div className="mt-4 flex flex-col">
+                  <Button onClick={submitHandler} disabled={isLoading}>
+                    {isLoading ? "Updating Link" : "Updated Link"}
+                  </Button>
+                </div>
+              }
+            </div>
           </div>
-        }
-      </div>
-    </div>
+        </>
+      </Protected>
     </>
   );
 }

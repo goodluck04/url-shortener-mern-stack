@@ -15,17 +15,19 @@ const app = express();
 // port to listen
 const PORT = process.env.PORT || 8000;
 
-// adding middleware
-app.use(cors());
 
+// adding middleware
 // parsing json
 app.use(express.json());
 // adding extra security http
 app.use(helmet());
 // cross origin access
-
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+}));
 // parsing cookies
-app.use(cookieParser());
+app.use(cookieParser()); 
 // rate limit
 app.use(limiter);
 

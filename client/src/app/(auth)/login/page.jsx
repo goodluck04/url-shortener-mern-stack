@@ -10,6 +10,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { toast } from "@/components/ui/use-toast";
 import { useDispatch } from "react-redux";
+import {  userLoggedIn2 } from "@/redux/features/auth/authSlice";
 
 export default function Page() {
   const dispatch = useDispatch();
@@ -26,6 +27,8 @@ export default function Page() {
 
   useEffect(() => {
     if (isSuccess) {
+      // console.log(data.rest)
+      dispatch(userLoggedIn2({userId:data.rest._id,user:data.rest.username}))
       toast({
         title: "Success",
         description: data.message,
