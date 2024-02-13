@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(helmet());
 // cross origin access
 app.use(cors({
-    origin: process.env.CLIENT_URL,
+    origin: ['https://urlener.vercel.app/'],
     credentials: true,
 }));
 // parsing cookies
